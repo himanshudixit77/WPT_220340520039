@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <Br/>Book id<input type="text" name="bookid" id="bookid"/> <span id="msg"></span>
+
+<Br/><br>book name<input type="text" name="bookname" id="bookname"/><br><br>
+<Br/>price<input type="text" name="price" id="price"/><br><br>
+
+<button id="b2"> add a book</button>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function()
+{
+console.log("no more sins");
+$("#b2").click(function () 
+	{ 
+		let input={ bookid:$("#bookid").val(),
+                    bookname:$("#bookname").val(),
+                     price:$("#price").val()};
+  let parameter={
+	                data:input,
+					dataType:"json",
+					URL:"http://localhost:900/getDetail",
+					type:"get",
+					success:(himanshu)=>{console.log("data submited"+himanshu)
+                    if(himanshu.status==true)
+                        $("#msg").text("book is added");
+                    else
+                    $("#msg").text("book is  not added");
+				
+				},
+                error:(errorgiven)=>{console.log("failed to contact it"+errorgiven)}
+  };
+
+
+$.ajax(parameter);
+	});
+	
+});
+
+</script>
+</body>
+</html>
